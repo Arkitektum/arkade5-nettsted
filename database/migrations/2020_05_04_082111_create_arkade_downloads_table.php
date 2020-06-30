@@ -19,7 +19,7 @@ class CreateArkadeDownloadsTable extends Migration
 
             $table->foreignId('arkade_release_id')->constrained();
             $table->foreignId('arkade_downloader_id')->constrained();
-            $table->foreignId('organization_id')->constrained();
+            $table->foreignId('organization_id')->nullable()->constrained();
         });
     }
 
