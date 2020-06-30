@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'has_arkade_v1_experience', 'wants_news'
+        'name', 'email', 'password'
     ];
 
     /**

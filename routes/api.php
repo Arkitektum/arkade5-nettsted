@@ -15,9 +15,9 @@ use App\Organization;
 use App\Http\Resources\OrganizationCollection;
 use App\Http\Resources\Organization as OrganizationResource;
 
-use App\User;
-use App\Http\Resources\User as UserResource;
-use App\Http\Resources\UserCollection;
+use App\ArkadeDownloader;
+use App\Http\Resources\ArkadeDownloader as DownloaderResource;
+use App\Http\Resources\ArkadeDownloaderCollection;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ Route::get('/', function () {
         'links' => [
             'arkade-nedlastinger' => route('downloads'),
             'organisasjoner' => route('organizations'),
-            'brukere' => route('users'),
+            'nedlastere' => route('downloaders'),
             'arkade-utgivelser' => route('releases'),
             'self' => route('index'),
         ],
@@ -65,13 +65,13 @@ Route::get('arkade-utgivelser/{release}', function (ArkadeRelease $release) {
     return new ArkadeReleaseResource(ArkadeRelease::find($release->id));
 })->name('release');
 
-Route::get('brukere', function () {
-    return new UserCollection(User::paginate());
-})->name('users');
+Route::get('arkade-nedlastere', function () {
+    return new ArkadeDownloaderCollection(ArkadeDownloader::paginate());
+})->name('downloaders');
 
-Route::get('brukere/{user}', function (User $user) {
-    return new UserResource(User::find($user->id));
-})->name('user');
+Route::get('arkade-nedlastere/{downloader}', function (ArkadeDownloader $downloader) {
+    return new DownloaderResource(ArkadeDownloader::find($downloader->id));
+})->name('downloader');
 
 Route::get('organisasjoner', function () {
     return new OrganizationCollection(Organization::paginate());

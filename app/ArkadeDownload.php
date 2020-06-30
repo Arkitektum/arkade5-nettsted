@@ -27,11 +27,11 @@ class ArkadeDownload extends Model
     }
 
     /**
-     * Get the user for the download.
+     * Get the Arkade downloader for the download.
      */
-    public function user()
+    public function arkadeDownloader()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\ArkadeDownloader');
     }
 
     /**

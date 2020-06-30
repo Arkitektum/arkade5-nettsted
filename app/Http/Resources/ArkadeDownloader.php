@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class User extends JsonResource
+class ArkadeDownloader extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,13 +15,12 @@ class User extends JsonResource
     public function toArray($request)
     {
         return [
-            'navn' => $this->name,
             'epost' => $this->email,
             'har_arkade_v1_erfaring' => $this->has_arkade_v1_experience,
             'onsker_nyheter' => $this->wants_news,
             'links' => [
-                'self' => route('user', $this->id),
-                'parent' => route('users'),
+                'self' => route('downloader', $this->id),
+                'parent' => route('downloaders'),
             ],
         ];
     }

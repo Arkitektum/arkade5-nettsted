@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class UserCollection extends ResourceCollection
+class ArkadeDownloaderCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -17,7 +17,7 @@ class UserCollection extends ResourceCollection
         return [
             'data' => $this->collection,
             'links' => [
-                'self' => route('users'),
+                'self' => route('downloaders'),
                 'api_index' => route('index'),
             ],
         ];

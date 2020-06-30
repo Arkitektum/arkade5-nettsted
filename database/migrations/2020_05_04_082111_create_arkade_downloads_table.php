@@ -18,7 +18,7 @@ class CreateArkadeDownloadsTable extends Migration
             $table->timestamp('downloaded_at')->useCurrent();
 
             $table->foreignId('arkade_release_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('arkade_downloader_id')->constrained();
             $table->foreignId('organization_id')->constrained();
         });
     }

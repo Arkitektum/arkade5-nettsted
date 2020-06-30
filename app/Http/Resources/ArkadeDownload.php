@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\ArkadeRelease as ArkadeReleaseResource;
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\ArkadeDownloader as ArkadeDownloaderResource;
 use App\Http\Resources\Organization as OrganizationResource;
 
 class ArkadeDownload extends JsonResource
@@ -20,7 +20,7 @@ class ArkadeDownload extends JsonResource
         return [
             'nedlastingstidspunkt' => $this->downloaded_at->format("d.m.Y H:i"),
             'arkadeutgivelse' => new ArkadeReleaseResource($this->arkadeRelease),
-            'bruker' => new UserResource($this->user),
+            'arkadenedlaster' => new ArkadeDownloaderResource($this->user),
             'organisasjon' => new OrganizationResource($this->organization),
             'links' => [
                 'self' => route('download', $this->id),
