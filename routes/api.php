@@ -25,18 +25,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', function () {
-    return [
-        'links' => [
-            'arkade-nedlastinger' => route('downloads'),
-            'organisasjoner' => route('organizations'),
-            'nedlastere' => route('downloaders'),
-            'arkade-utgivelser' => route('releases'),
-            'self' => route('index'),
-        ],
-    ];
-})->name('index');
-
 Route::post('arkade-downloads', function (Request $request) {
 
     $arkadeUI = $request->input('arkadeUI');
