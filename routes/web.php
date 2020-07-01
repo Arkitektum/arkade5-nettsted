@@ -33,7 +33,7 @@ use App\Http\Resources\ArkadeDownloaderCollection;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(function () {
 
