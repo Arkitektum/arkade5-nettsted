@@ -18,7 +18,7 @@ class ArkadeDownloadCollection extends ResourceCollection
             'data' => $this->collection,
             'links' => [
                 'self' => route('statistics.downloads'),
-                'api_index' => route('statistics.index'),
+                'main_index' => route('statistics.index'),
             ],
         ];
     }

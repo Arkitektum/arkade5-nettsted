@@ -18,7 +18,7 @@ class OrganizationCollection extends ResourceCollection
             'data' => $this->collection,
             'links' => [
                 'self' => route('statistics.organizations'),
-                'api_index' => route('statistics.index'),
+                'main_index' => route('statistics.index'),
             ],
         ];
     }
