@@ -39,7 +39,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('statistikk')->name('statistics.')->group(function () {
+Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(function () {
 
     Route::get('/', function () {
         return [
