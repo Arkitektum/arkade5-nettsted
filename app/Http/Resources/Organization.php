@@ -19,8 +19,8 @@ class Organization extends JsonResource
             'organisasjonsform' => $this->org_form,
             'organisasjonsnummer' => $this->org_number,
             'links' => [
-                'self' => route('organization', $this->id),
-                'parent' => route('organizations'),
+                'self' => route('statistics.organization', $this->id),
+                'parent' => route('statistics.organizations'),
             ],
         ];
     }

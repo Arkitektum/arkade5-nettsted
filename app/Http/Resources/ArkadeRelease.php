@@ -20,9 +20,9 @@ class ArkadeRelease extends JsonResource
             'utgivelsesdato' => $this->released_at->format("d.m.Y"),
             'antall_nedlastinger' => $this->downloads->count(),
             'links' => [
-                'self' => route('release', $this->id),
-                'parent' => route('releases'),
-                'nedlastinger' => route('downloads', ['utgivelse' => $this->id]),
+                'self' => route('statistics.release', $this->id),
+                'parent' => route('statistics.releases'),
+                'nedlastinger' => route('statistics.downloads', ['utgivelse' => $this->id]),
             ],
         ];
     }

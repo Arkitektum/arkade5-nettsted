@@ -17,8 +17,8 @@ class ArkadeReleaseCollection extends ResourceCollection
         return [
             'data' => $this->collection,
             'links' => [
-                'self' => route('releases'),
-                'api_index' => route('index'),
+                'self' => route('statistics.releases'),
+                'api_index' => route('statistics.index'),
             ],
         ];
     }

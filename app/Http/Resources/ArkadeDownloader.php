@@ -19,8 +19,8 @@ class ArkadeDownloader extends JsonResource
             'har_arkade_v1_erfaring' => $this->has_arkade_v1_experience,
             'onsker_nyheter' => $this->wants_news,
             'links' => [
-                'self' => route('downloader', $this->id),
-                'parent' => route('downloaders'),
+                'self' => route('statistics.downloader', $this->id),
+                'parent' => route('statistics.downloaders'),
             ],
         ];
     }

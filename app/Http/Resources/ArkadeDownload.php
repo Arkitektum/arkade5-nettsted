@@ -23,8 +23,8 @@ class ArkadeDownload extends JsonResource
             'arkadenedlaster' => new ArkadeDownloaderResource($this->user),
             'organisasjon' => new OrganizationResource($this->organization),
             'links' => [
-                'self' => route('download', $this->id),
-                'parent' => route('downloads'),
+                'self' => route('statistics.download', $this->id),
+                'parent' => route('statistics.downloads'),
             ],
         ];
     }
