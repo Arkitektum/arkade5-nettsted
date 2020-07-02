@@ -20,7 +20,7 @@ class ArkadeDownload extends JsonResource
         return [
             'nedlastingstidspunkt' => $this->downloaded_at->format("d.m.Y H:i"),
             'arkadeutgivelse' => new ArkadeReleaseResource($this->arkadeRelease),
-            'arkadenedlaster' => new ArkadeDownloaderResource($this->user),
+            'arkadenedlaster' => new ArkadeDownloaderResource($this->arkadeDownloader),
             'organisasjon' => new OrganizationResource($this->organization),
             'links' => [
                 'self' => route('statistics.download', $this->id),
