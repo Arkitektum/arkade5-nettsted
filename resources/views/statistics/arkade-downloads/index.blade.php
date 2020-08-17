@@ -1,0 +1,28 @@
+@extends('layouts.app')
+@section('title', 'Arkade-nedlastinger')
+@section('content')
+    <div class="container">
+        <h1>Arkade-nedlastinger</h1>
+        <a class="nav-link float-right" href="{{ route('statistics.index') }}">Tilbake til oversikt</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Tidspunkt</th>
+                <th scope="col">Bruker - Organisasjon</th>
+                <th scope="col">Utgivelse</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($downloads->sortByDesc('downloaded_at') as $download)
+                <tr>
+                    <td>{{ $download->downloaded_at->format('d.m.y - H:i') }}</td>
+                    <td>{{ $download->arkadeDownloader->email }}
+                        - {{ $download->organization->name }}</td>
+                    <td>{{ $download->arkadeRelease->version_number }}
+                        - {{ $download->arkadeRelease->user_interface }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection

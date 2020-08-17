@@ -15,7 +15,7 @@
                         @endif
                         <div class="navbar">
                             <div class="navbar-text">Nedlastingsstatistikk</div>
-                            <a class="page-link" title="Statistikk" href="{{ route('statistics.index') }}">JSON</a>
+                            <a class="page-link" title="Statistikk" href="{{ route('statistics.index') }}">HTML</a>
                         </div>
                     </div>
                 </div>

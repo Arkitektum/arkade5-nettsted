@@ -1,0 +1,28 @@
+@extends('layouts.app')
+@section('title', 'Arkade-utgivelser')
+@section('content')
+    <div class="container">
+        <h1>Arkade-utgivelser</h1>
+        <a class="nav-link float-right" href="{{ route('statistics.index') }}">Tilbake til oversikt</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Versjonsnummer</th>
+                <th scope="col">Brukergrensesnitt</th>
+                <th scope="col">Utgivelsesdato</th>
+                <th scope="col">Antall nedlastinger</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($releases->sortByDesc('released_at') as $release)
+                <tr>
+                    <td>{{ $release->version_number }}</td>
+                    <td>{{ $release->user_interface }}</td>
+                    <td>{{ $release->released_at->format('d.m.y') }}</td>
+                    <td>{{ $release->downloads->count() }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection
