@@ -41,8 +41,8 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
         return view('statistics.index',
             ['links' => [
                 'arkadenedlastinger' => route('statistics.downloads'),
-                'arkadenedlaster-organisasjoner' => route('statistics.organizations'),
                 'arkadenedlastere' => route('statistics.downloaders'),
+                'arkadenedlaster-organisasjoner' => route('statistics.organizations'),
                 'arkadeutgivelser' => route('statistics.releases'),
                 //'self' => route('statistics.index'),
         ]]);
