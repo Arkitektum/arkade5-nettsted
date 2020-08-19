@@ -16,8 +16,8 @@
             @foreach ($downloaders as $downloader)
                 <tr>
                     <td>{{ $downloader->email }}</td>
-                    <td>{{ $downloader->has_arkade_v1_experience ? 'Ja' : 'Nei' }}</td>
-                    <td>{{ $downloader->wants_news ? 'Ja' : 'Nei' }}</td>
+                    <td>{{ $downloader->has_arkade_v1_experience ? 'Ja' : '' }}</td>
+                    <td>{{ $downloader->wants_news ? 'Ja' : '' }}</td>
                 </tr>
             @endforeach
             </tbody>
