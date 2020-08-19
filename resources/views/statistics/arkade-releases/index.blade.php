@@ -14,7 +14,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($releases->sortByDesc('released_at') as $release)
+            @foreach ($releases as $release)
                 <tr>
                     <td>{{ $release->version_number }}</td>
                     <td>{{ $release->user_interface }}</td>

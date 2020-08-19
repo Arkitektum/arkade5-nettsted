@@ -13,7 +13,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($downloads->sortByDesc('downloaded_at') as $download)
+            @foreach ($downloads as $download)
                 <tr>
                     <td>{{ $download->downloaded_at->format('d.m.y - H:i') }}</td>
                     <td>{{ $download->arkadeDownloader->email }}

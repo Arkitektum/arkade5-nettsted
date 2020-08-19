@@ -13,7 +13,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($organizations->sortByDesc('downloaded_at') as $organization)
+            @foreach ($organizations as $organization)
                 <tr>
                     <td>{{ $organization->name }}</td>
                     <td>{{ $organization->org_form }}</td>
