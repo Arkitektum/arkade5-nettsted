@@ -50,8 +50,8 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
 
     Route::get('arkade-nedlastinger', function (Request $request) {
         $downloads = ($releaseId = $request->input('utgivelse'))
-            ? ArkadeDownload::whereArkadeReleaseId($releaseId)->paginate()
-            : $downloads = ArkadeDownload::paginate();
+            ? ArkadeDownload::orderByDesc('downloaded_at')->whereArkadeReleaseId($releaseId)->paginate()
+            : $downloads = ArkadeDownload::orderByDesc('downloaded_at')->paginate();
         return view('statistics.arkade-downloads.index', ['downloads' => new ArkadeDownloadCollection($downloads)]);
     })->name('downloads');
 
@@ -60,7 +60,7 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
     })->name('download');
 
     Route::get('arkade-utgivelser', function () {
-        return view('statistics.arkade-releases.index', ['releases' => new ArkadeReleaseCollection(ArkadeRelease::paginate())]);
+        return view('statistics.arkade-releases.index', ['releases' => new ArkadeReleaseCollection(ArkadeRelease::orderByDesc('released_at')->paginate())]);
     })->name('releases');
 
     Route::get('arkade-utgivelser/{release}', function (ArkadeRelease $release) {
@@ -68,7 +68,7 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
     })->name('release');
 
     Route::get('arkade-nedlastere', function () {
-        return view('statistics.arkade-downloaders.index', ['downloaders' => new ArkadeDownloaderCollection(ArkadeDownloader::paginate())]);
+        return view('statistics.arkade-downloaders.index', ['downloaders' => new ArkadeDownloaderCollection(ArkadeDownloader::orderByDesc('created_at')->paginate())]);
     })->name('downloaders');
 
     Route::get('arkade-nedlastere/{downloader}', function (ArkadeDownloader $downloader) {
@@ -76,7 +76,7 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
     })->name('downloader');
 
     Route::get('organisasjoner', function () {
-        return view('statistics.arkade-organizations.index', ['organizations' => new OrganizationCollection(Organization::paginate())]);
+        return view('statistics.arkade-organizations.index', ['organizations' => new OrganizationCollection(Organization::orderByDesc('created_at')->paginate())]);
     })->name('organizations');
 
     Route::get('organisasjoner/{organization}', function (Organization $organization) {
