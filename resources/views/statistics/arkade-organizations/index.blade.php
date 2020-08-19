@@ -22,5 +22,6 @@
             @endforeach
             </tbody>
         </table>
+        {{ $organizations->links() }}
     </div>
 @endsection

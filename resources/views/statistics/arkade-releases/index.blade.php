@@ -24,5 +24,6 @@
             @endforeach
             </tbody>
         </table>
+        {{ $releases->links() }}
     </div>
 @endsection

@@ -25,5 +25,6 @@
             @endforeach
             </tbody>
         </table>
+        {{ $downloads->links() }}
     </div>
 @endsection
