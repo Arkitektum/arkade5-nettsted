@@ -44,7 +44,7 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
                 'arkadenedlaster-organisasjoner' => route('statistics.organizations'),
                 'arkadenedlastere' => route('statistics.downloaders'),
                 'arkadeutgivelser' => route('statistics.releases'),
-                'self' => route('statistics.index'),
+                //'self' => route('statistics.index'),
         ]]);
     })->name('index');
 
