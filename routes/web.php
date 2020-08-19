@@ -40,10 +40,10 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
     Route::get('/', function () {
         return view('statistics.index',
             ['links' => [
-                'arkade-nedlastinger' => route('statistics.downloads'),
-                'organisasjoner' => route('statistics.organizations'),
-                'nedlastere' => route('statistics.downloaders'),
-                'arkade-utgivelser' => route('statistics.releases'),
+                'arkadenedlastinger' => route('statistics.downloads'),
+                'arkadenedlaster-organisasjoner' => route('statistics.organizations'),
+                'arkadenedlastere' => route('statistics.downloaders'),
+                'arkadeutgivelser' => route('statistics.releases'),
                 'self' => route('statistics.index'),
         ]]);
     })->name('index');

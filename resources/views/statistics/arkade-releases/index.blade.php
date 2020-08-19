@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title', 'Arkade-utgivelser')
+@section('title', 'Arkadeutgivelser')
 @section('content')
     <div class="container">
-        <h1>Arkade-utgivelser</h1>
+        <h1>Arkadeutgivelser</h1>
         <a class="nav-link float-right" href="{{ route('statistics.index') }}">Tilbake til oversikt</a>
         <table class="table">
             <thead>

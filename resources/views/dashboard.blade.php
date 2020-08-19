@@ -14,7 +14,7 @@
                             </div>
                         @endif
                         <div class="navbar">
-                            <div class="navbar-text">Nedlastingsstatistikk</div>
+                            <div class="navbar-text">Arkade-nedlastingsstatistikk</div>
                             <a class="page-link" title="Statistikk" href="{{ route('statistics.index') }}">HTML</a>
                         </div>
                     </div>
