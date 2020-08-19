@@ -17,7 +17,8 @@
                 <tr>
                     <td>{{ $download->downloaded_at->format('d.m.y - H:i') }}</td>
                     <td>{{ $download->arkadeDownloader->email }}
-                        - {{ $download->organization->name }}</td>
+                        @isset($download->organization) - {{ $download->organization->name }}@endisset
+                    </td>
                     <td>{{ $download->arkadeRelease->version_number }}
                         - {{ $download->arkadeRelease->user_interface }}</td>
                 </tr>

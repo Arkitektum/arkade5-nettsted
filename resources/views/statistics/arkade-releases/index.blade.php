@@ -18,7 +18,7 @@
                 <tr>
                     <td>{{ $release->version_number }}</td>
                     <td>{{ $release->user_interface }}</td>
-                    <td>{{ $release->released_at->format('d.m.y') }}</td>
+                    <td>@if(isset($release->released_at)){{ $release->released_at->format('d.m.y') }}@endisset</td>
                     <td>{{ $release->downloads->count() }}</td>
                 </tr>
             @endforeach
