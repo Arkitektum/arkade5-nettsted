@@ -51,7 +51,7 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
     Route::get('arkade-nedlastinger', function (Request $request) {
         $downloads = ($releaseId = $request->input('utgivelse'))
             ? ArkadeDownload::orderByDesc('downloaded_at')->whereArkadeReleaseId($releaseId)->paginate()
-            : $downloads = ArkadeDownload::orderByDesc('downloaded_at')->paginate();
+            : ArkadeDownload::orderByDesc('downloaded_at')->paginate();
         return view('statistics.arkade-downloads.index', ['downloads' => new ArkadeDownloadCollection($downloads)]);
     })->name('downloads');
 
