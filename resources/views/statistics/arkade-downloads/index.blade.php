@@ -2,7 +2,11 @@
 @section('title', 'Arkadenedlastinger')
 @section('content')
     <div class="container">
-        <h1>Arkadenedlastinger</h1>
+        <h1>Arkadenedlastinger
+            @isset($totalCount)
+                <span class="small">({{ $totalCount }})</span>
+            @endisset
+        </h1>
         <a class="nav-link float-right" href="{{ route('statistics.index') }}">Tilbake til oversikt</a>
         <table class="table">
             <thead>
