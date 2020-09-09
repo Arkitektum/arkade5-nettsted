@@ -15,7 +15,7 @@ class ArkadeDownload extends Model
      * @var array
      */
     protected $fillable = [
-        'downloaded_at', 'request_host'
+        'downloaded_at', 'request_ip', 'request_host'
     ];
 
     /**

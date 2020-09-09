@@ -38,6 +38,7 @@ Route::post('arkade-downloads', function (Request $request) {
         abort(500, 'Download failed');
 
     $arkadeDownload = new ArkadeDownload();
+    $arkadeDownload->request_ip = $request->ip();
     $arkadeDownload->request_host = $request->getHost();
     $arkadeDownload->arkadeRelease()->associate($release);
     $arkadeDownloader = ArkadeDownloader::updateOrCreate(
