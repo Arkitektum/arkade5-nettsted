@@ -18,6 +18,7 @@ $factory->define(ArkadeDownload::class, function (Faker $faker) {
         'downloaded_at' => $faker->dateTimeBetween($arkadeRelease->released_at, $latestDownloadTime),
         'arkade_release_id' => $arkadeRelease->id,
         'arkade_downloader_id' => $user->id,
-        'organization_id' => ((int)$user->id % 20) + 1
+        'organization_id' => ((int)$user->id % 20) + 1,
+        'is_automated' => $faker->boolean(15),
     ];
 });

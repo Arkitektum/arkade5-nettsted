@@ -52,6 +52,7 @@ Route::post('arkade-downloads', function (Request $request) {
             'wants_news' => $request->input('downloaderNews'),
         ]);
     $arkadeDownload->arkadeDownloader()->associate($arkadeDownloader);
+    $arkadeDownload->is_automated = $request->input('isAutomated');
 
     if ($orgNumber = $request->input('orgNumber')) {
         $organization = Organization::updateOrCreate(
