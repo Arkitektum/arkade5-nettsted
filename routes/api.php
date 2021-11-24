@@ -10,6 +10,8 @@ use App\ArkadeDownloader;
 use App\ArkadeDownload;
 use App\ArkadeRelease;
 
+use App\Http\Resources\OrganizationLocation;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -65,3 +67,7 @@ Route::post('arkade-downloads', function (Request $request) {
     return $arkadePackageFile;
 
 })->name('download.store');
+
+Route::get('organization-locations', function () {
+   return OrganizationLocation::collection(Organization::withAddressLocation()->get());
+});
