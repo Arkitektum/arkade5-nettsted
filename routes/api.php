@@ -30,7 +30,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('arkade-downloads', function (Request $request) {
 
     $arkadeUI = $request->input('arkadeUI');
-    $release = ArkadeRelease::whereUserInterface($arkadeUI)->orderByDesc('released_at')->first();
+
+    $arkadeVersionNumber = $request->input('arkadeVersion');
+
+    $release = isset($arkadeVersionNumber)
+        ? ArkadeRelease::whereUserInterface($arkadeUI)->whereVersionNumber($arkadeVersionNumber)->first()
+        : ArkadeRelease::whereUserInterface($arkadeUI)->orderByDesc('released_at')->first(); // latest version
 
     $filename = $release->package_filename;
     $headers = ['Filename' => $filename, 'Access-Control-Expose-Headers' => 'Filename'];
