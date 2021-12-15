@@ -48,7 +48,6 @@ Route::post('arkade-downloads', function (Request $request) {
     $arkadeDownloader = ArkadeDownloader::updateOrCreate(
         ['email' => $request->input('downloaderEmail')],
         [
-            'has_arkade_v1_experience' => $request->input('downloaderA1Xp'),
             'wants_news' => $request->input('downloaderNews'),
         ]);
     $arkadeDownload->arkadeDownloader()->associate($arkadeDownloader);

@@ -12,7 +12,7 @@ class ArkadeDownloader extends Model
      * @var array
      */
     protected $fillable = [
-        'email', 'has_arkade_v1_experience', 'wants_news'
+        'email', 'wants_news'
     ];
 
     /**
