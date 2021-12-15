@@ -45,11 +45,12 @@ Route::post('arkade-downloads', function (Request $request) {
 
     $arkadeDownload = new ArkadeDownload();
     $arkadeDownload->arkadeRelease()->associate($release);
-    $arkadeDownloader = ArkadeDownloader::updateOrCreate(
-        ['email' => $request->input('downloaderEmail')],
-        [
-            'wants_news' => $request->input('downloaderNews'),
-        ]);
+    $arkadeDownloader = ArkadeDownloader::updateOrCreate(['email' => $request->input('downloaderEmail')]);
+    if ($request->input('downloaderNews')) { // is defined and true
+        $arkadeDownloader->wants_news = true;
+        $arkadeDownloader->save();
+        // no unsubscribe trough open API
+    }
     $arkadeDownload->arkadeDownloader()->associate($arkadeDownloader);
     $arkadeDownload->is_automated = $request->input('isAutomated');
 
