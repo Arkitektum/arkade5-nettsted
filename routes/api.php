@@ -10,6 +10,7 @@ use App\ArkadeDownloader;
 use App\ArkadeDownload;
 use App\ArkadeRelease;
 
+use App\Services\OrganizationInfoService;
 use App\Http\Resources\OrganizationLocation;
 
 /*
@@ -61,10 +62,18 @@ Route::post('arkade-downloads', function (Request $request) {
                 'name' => $request->input('orgName'),
                 'org_form' => $request->input('orgForm'),
                 'address' => $request->input('orgAddress'),
-                'latitude' => $request->input('orgLatitude'),
-                'longitude' => $request->input('orgLongitude')
             ]
         );
+
+        try {
+            $coordinates = OrganizationInfoService::getCoordinates($organization->address);
+            $organization->latitude = $coordinates['lat'];
+            $organization->longitude = $coordinates['lon'];
+            $organization->save();
+        } catch (Throwable $throwable) {
+            echo 'Could not get coordinates for ' . $organization->address . ' -> ' . $throwable->getMessage() . PHP_EOL;
+        }
+
         $arkadeDownload->organization()->associate($organization);
     }
     $arkadeDownload->save();

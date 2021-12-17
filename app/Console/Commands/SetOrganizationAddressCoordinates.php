@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Organization;
+use App\Services\OrganizationInfoService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Throwable;
 
 class SetOrganizationAddressCoordinates extends Command
 {
@@ -43,35 +45,17 @@ class SetOrganizationAddressCoordinates extends Command
 
         foreach ($organizationsWithoutCoordinates->whereNotNull('address') as $organization) {
 
-            $coordinates = $this->getCoordinates($organization->address);
-
-            $organization->latitude = $coordinates['lat'];
-            $organization->longitude = $coordinates['lon'];
-
-            $organization->save();
-        }
-    }
-
-    /**
-     * @return string[]
-     */
-    private function getCoordinates($address): array
-    {
-        $response = Http::get('https://ws.geonorge.no/adresser/v1/sok?sok=' . $address);
-
-        $lat = null;
-        $lon = null;
-
-        if ($response->successful()) {
             try {
-                $representationPoint = $response['adresser'][0]['representasjonspunkt'];
-                $lat = $representationPoint['lat'];
-                $lon = $representationPoint['lon'];
-            } catch (\Exception $exception) {
-                echo 'Could not get coordinates for ' . $address . ': ' . $exception->getMessage() . PHP_EOL;
+                $coordinates = OrganizationInfoService::getCoordinates($organization->address);
+
+                $organization->latitude = $coordinates['lat'];
+                $organization->longitude = $coordinates['lon'];
+
+                $organization->save();
+            } catch (Throwable $throwable) {
+                echo 'Could not get coordinates for ' . $organization->address . ' -> ' . $throwable->getMessage() . PHP_EOL;
             }
         }
-
-        return ['lat' => $lat, 'lon' => $lon];
     }
+
 }
