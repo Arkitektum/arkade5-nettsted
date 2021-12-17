@@ -56,14 +56,18 @@ Route::post('arkade-downloads', function (Request $request) {
     $arkadeDownload->is_automated = $request->input('isAutomated');
 
     if ($orgNumber = $request->input('orgNumber')) {
-        $organization = Organization::updateOrCreate(
-            ['org_number' => $orgNumber],
-            [
-                'name' => $request->input('orgName'),
-                'org_form' => $request->input('orgForm'),
-                'address' => $request->input('orgAddress'),
-            ]
-        );
+
+        $organization = Organization::updateOrCreate(['org_number' => $orgNumber]);
+
+        try {
+            $organizationInfo = OrganizationInfoService::getOrganizationData($orgNumber);
+            $organization->name = $organizationInfo['name'];
+            $organization->org_form = $organizationInfo['org_form'];
+            $organization->address = $organizationInfo['address'];
+            $organization->save();
+        } catch (Throwable $throwable) {
+            echo 'Could not get organization data for ' . $orgNumber . ' -> ' . $throwable->getMessage() . PHP_EOL;
+        }
 
         try {
             $coordinates = OrganizationInfoService::getCoordinates($organization->address);
