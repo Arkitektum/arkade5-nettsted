@@ -28,6 +28,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('download-test', function (Request $request) {
+
+    $filename = 'Arkade5-2.0.0.msi';
+
+    $headers = [
+       'Filename' => $filename,
+       'Access-Control-Expose-Headers' => 'Filename',
+       //'Content-Type' => 'application/octet-stream',
+   ];
+
+    return Storage::download($filename, $filename, $headers);
+});
+// Nettleser tolker filen som msi, mens restklient sier 'unknown' og bruker ikke 'filename' ...
+
 Route::post('arkade-downloads', function (Request $request) {
 
     $arkadeUI = $request->input('arkadeUI');
