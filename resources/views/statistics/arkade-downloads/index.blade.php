@@ -14,6 +14,7 @@
                 <th scope="col">Tidspunkt</th>
                 <th scope="col">Bruker - Organisasjon</th>
                 <th scope="col">Utgivelse</th>
+                <th title="Automatisert nedlasting" scope="col">Auto. &#x2699</th>
             </tr>
             </thead>
             <tbody>
@@ -25,6 +26,9 @@
                     </td>
                     <td>{{ $download->arkadeRelease->version_number }}
                         - {{ $download->arkadeRelease->user_interface }}</td>
+                    <td>
+                        <b title="Automatisert nedlasting">{!! $download->is_automated ? '&#x2699;' : '' !!}</b>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
