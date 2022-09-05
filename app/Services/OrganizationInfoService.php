@@ -44,7 +44,7 @@ class OrganizationInfoService
      */
     public static function getCoordinates($address): array
     {
-        $response = Http::get('https://ws.geonorge.no/adresser/v1/sok?sok=' . $address);
+        $response = Http::get('https://ws.geonorge.no/adresser/v1/sok?sok=' . urlencode($address));
 
         if ($response->failed())
             $response->throw();
