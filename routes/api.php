@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -66,7 +67,7 @@ Route::post('arkade-downloads', function (Request $request) {
             $organization->address = $organizationInfo['address'];
             $organization->save();
         } catch (Throwable $throwable) {
-            echo 'Could not get organization data for ' . $orgNumber . ' -> ' . $throwable->getMessage() . PHP_EOL;
+            Log::info('Could not get organization data for ' . $orgNumber, ['exception' => $throwable->getMessage()]);
         }
 
         try {
@@ -75,7 +76,7 @@ Route::post('arkade-downloads', function (Request $request) {
             $organization->longitude = $coordinates['lon'];
             $organization->save();
         } catch (Throwable $throwable) {
-            echo 'Could not get coordinates for ' . $organization->address . ' -> ' . $throwable->getMessage() . PHP_EOL;
+            Log::info('Could not get coordinates for ' . $organization->address, ['exception' => $throwable->getMessage()]);
         }
 
         $arkadeDownload->organization()->associate($organization);
