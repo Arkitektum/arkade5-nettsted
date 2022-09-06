@@ -70,13 +70,15 @@ Route::post('arkade-downloads', function (Request $request) {
             Log::info('Could not get organization data for ' . $orgNumber, ['exception' => $throwable->getMessage()]);
         }
 
-        try {
-            $coordinates = OrganizationInfoService::getCoordinates($organization->address);
-            $organization->latitude = $coordinates['lat'];
-            $organization->longitude = $coordinates['lon'];
-            $organization->save();
-        } catch (Throwable $throwable) {
-            Log::info('Could not get coordinates for ' . $organization->address, ['exception' => $throwable->getMessage()]);
+        if ($organization->address) {
+            try {
+                $coordinates = OrganizationInfoService::getCoordinates($organization->address);
+                $organization->latitude = $coordinates['lat'];
+                $organization->longitude = $coordinates['lon'];
+                $organization->save();
+            } catch (Throwable $throwable) {
+                Log::info('Could not get coordinates for ' . $organization->address, ['exception' => $throwable->getMessage()]);
+            }
         }
 
         $arkadeDownload->organization()->associate($organization);
