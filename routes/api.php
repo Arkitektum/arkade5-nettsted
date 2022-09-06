@@ -61,24 +61,12 @@ Route::post('arkade-downloads', function (Request $request) {
         $organization = Organization::updateOrCreate(['org_number' => $orgNumber]);
 
         try {
-            $organizationInfo = OrganizationInfoService::getOrganizationData($orgNumber);
-            $organization->name = $organizationInfo['name'];
-            $organization->org_form = $organizationInfo['org_form'];
-            $organization->address = $organizationInfo['address'];
-            $organization->save();
+            OrganizationInfoService::setOrganizationInfo($organization);
         } catch (Throwable $throwable) {
-            Log::info('Could not get organization data for ' . $orgNumber, ['exception' => $throwable->getMessage()]);
-        }
-
-        if ($organization->address) {
-            try {
-                $coordinates = OrganizationInfoService::getCoordinates($organization->address);
-                $organization->latitude = $coordinates['lat'];
-                $organization->longitude = $coordinates['lon'];
-                $organization->save();
-            } catch (Throwable $throwable) {
-                Log::info('Could not get coordinates for ' . $organization->address, ['exception' => $throwable->getMessage()]);
-            }
+            Log::info(
+                'Could not set organization info for ' . $organization->orgNumber,
+                ['exception' => $throwable->getMessage()]
+            );
         }
 
         $arkadeDownload->organization()->associate($organization);
