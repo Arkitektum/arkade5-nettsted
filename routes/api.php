@@ -42,7 +42,7 @@ Route::post('arkade-downloads', function (Request $request) {
     $filename = $release->package_filename;
     $headers = ['Filename' => $filename, 'Access-Control-Expose-Headers' => 'Filename'];
 
-    if(!$arkadePackageFile = Storage::download($filename, $filename, $headers))
+    if(!$arkadePackageFile = Storage::download('builds/releases/'.$filename, $filename, $headers))
         abort(500, 'Download failed');
 
     $arkadeDownload = new ArkadeDownload();
