@@ -17,6 +17,11 @@
                             <div class="navbar-text">Arkade-nedlastingsstatistikk</div>
                             <a class="page-link" title="Statistikk" href="{{ route('statistics.index') }}">HTML</a>
                         </div>
+                        <div class="navbar">
+                            <div class="navbar-text">Arkade-bygg</div>
+                            <a class="page-link" style="display: inline" title="Arkade-bygg"
+                               href="{{ route('builds.index') }}">HTML</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -19,6 +19,7 @@ use App\Http\Resources\Organization as OrganizationResource;
 use App\ArkadeDownloader;
 use App\Http\Resources\ArkadeDownloader as DownloaderResource;
 use App\Http\Resources\ArkadeDownloaderCollection;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,4 +95,22 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
     Route::get('organisasjoner/{organization}', function (Organization $organization) {
         return new OrganizationResource(Organization::find($organization->id));
     })->name('organization');
+});
+
+Route::middleware('auth')->prefix('builds')->name('builds.')->group(function () {
+
+    Route::get('/', function () {
+        return view('builds.index', ['buildTypes' => ['develop-builds', 'release-candidates', 'releases']]);
+    })->name('index');
+
+    Route::get('/{buildType}', function ($buildType) {
+        return view('builds.build-list', [
+            'buildType' => $buildType,
+            'builds' => Storage::files('builds/' . $buildType)
+        ]);
+    })->name('buildList');
+
+    Route::get('/{buildType}/{build}', function ($buildType, $build) {
+        return Storage::download('builds/' . $buildType . '/' . $build);
+    })->name('buildDownload');
 });
