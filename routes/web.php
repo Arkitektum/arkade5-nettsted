@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Auth::routes();
+Auth::routes(['reset' => false]);
 
 Route::get('/', 'DashboardController@index')->name('dashboard');
 
