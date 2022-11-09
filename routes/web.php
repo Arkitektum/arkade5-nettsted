@@ -46,7 +46,7 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
                 'arkadenedlaster-organisasjoner' => route('statistics.organizations'),
                 'arkadeutgivelser' => route('statistics.releases'),
                 //'self' => route('statistics.index'),
-        ]]);
+            ]]);
     })->name('index');
 
     Route::get('arkade-nedlastinger', function (Request $request) {
@@ -114,3 +114,16 @@ Route::middleware('auth')->prefix('builds')->name('builds.')->group(function () 
         return Storage::download('builds/' . $buildType . '/' . $build);
     })->name('buildDownload');
 });
+
+Route::middleware('auth')->get('news-receivers', function () {
+
+    $newsReceiverEmails = ArkadeDownloader::whereWantsNews(true)->pluck('email');
+    $latestArkadeVersionNumber = ArkadeRelease::IsReleased()->distinct('version_number')
+        ->orderBy('version_number', 'desc')->pluck('version_number')->first();
+
+    return view('news-receivers.index', [
+        'newsReceiverEmails' => $newsReceiverEmails->toArray(),
+        'numberOfNewsReceivers' => $newsReceiverEmails->count(),
+        'latestArkadeVersionNumber' => $latestArkadeVersionNumber
+    ]);
+})->name('newsReceivers');

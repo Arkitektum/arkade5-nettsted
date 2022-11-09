@@ -22,6 +22,11 @@
                             <a class="page-link" style="display: inline" title="Arkade-bygg"
                                href="{{ route('builds.index') }}">HTML</a>
                         </div>
+                        <div class="navbar">
+                            <div class="navbar-text">Arkade-nyhetsinteressenter</div>
+                            <a class="page-link" style="display: inline" title="Arkade-nyhetsinteressenter"
+                               href="{{ route('newsReceivers') }}">HTML</a>
+                        </div>
                     </div>
                 </div>
             </div>
