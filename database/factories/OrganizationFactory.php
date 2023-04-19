@@ -1,18 +1,28 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\Organization;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Organization::class, function (Faker $faker) {
-
-    return [
-        'name' => $faker->company,
-        'org_form' => $faker->randomElement(['IKS - Interkommunalt selskap', 'KOMM - Kommune']),
-        'org_number' => $faker->randomNumber('9'),
-        'address' => $faker->address,
-        'latitude' => $faker->latitude,
-        'longitude' => $faker->longitude,
-    ];
-});
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Organization>
+ */
+class OrganizationFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'name' => fake()->company,
+            'org_form' => fake()->randomElement(['IKS - Interkommunalt selskap', 'KOMM - Kommune']),
+            'org_number' => fake()->randomNumber('9'),
+            'address' => fake()->address,
+            'latitude' => fake()->latitude,
+            'longitude' => fake()->longitude,
+        ];
+    }
+}
