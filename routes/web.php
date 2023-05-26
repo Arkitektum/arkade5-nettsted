@@ -65,6 +65,19 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
         ]);
     })->name('downloads');
 
+    Route::get('arkade-downloaders', function () {
+        return [
+            'downloaders' => new ArkadeDownloaderCollection(ArkadeDownloader::orderByDesc('created_at')->get()),
+            'totalCount' => ArkadeDownloader::count()
+        ];
+    });
+
+    Route::get('arkade-downloads', function () {
+            return new ArkadeDownloadCollection(ArkadeDownload::orderByDesc('downloaded_at')->get());
+    });
+
+
+
     Route::get('arkade-nedlastinger/{download}', function (ArkadeDownload $download) {
         return new ArkadeDownloadResource(ArkadeDownload::find($download->id));
     })->name('download');

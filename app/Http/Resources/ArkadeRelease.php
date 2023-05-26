@@ -17,13 +17,13 @@ class ArkadeRelease extends JsonResource
         return [
             'brukergrensesnitt' => $this->user_interface,
             'versjonsnummer' => $this->version_number,
-            'utgivelsesdato' => $this->released_at->format("d.m.Y"),
-            'antall_nedlastinger' => $this->downloads->count(),
-            'links' => [
-                'self' => route('statistics.release', $this->id),
-                'parent' => route('statistics.releases'),
-                'nedlastinger' => route('statistics.downloads', ['utgivelse' => $this->id]),
-            ],
+            //'utgivelsesdato' => $this->released_at->format("d.m.Y"),
+            //'antall_nedlastinger' => $this->downloads->count(),
+//            'links' => [
+//                'self' => route('statistics.release', $this->id),
+//                'parent' => route('statistics.releases'),
+//                'nedlastinger' => route('statistics.downloads', ['utgivelse' => $this->id]),
+//            ],
         ];
     }
 }

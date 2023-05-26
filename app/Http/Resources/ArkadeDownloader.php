@@ -16,12 +16,13 @@ class ArkadeDownloader extends JsonResource
     {
         return [
             'epost' => $this->email,
-            'har_arkade_v1_erfaring' => $this->has_arkade_v1_experience,
-            'onsker_nyheter' => $this->wants_news,
-            'links' => [
-                'self' => route('statistics.downloader', $this->id),
-                'parent' => route('statistics.downloaders'),
-            ],
+            'har_arkade_v1_erfaring' => $this->has_arkade_v1_experience ? 'Ja' : '',
+            'onsker_nyheter' => $this->wants_news ? 'Ja' : '',
+            'antall_nedlastinger' => $this->downloads->count(),
+//            'links' => [
+//                'self' => route('statistics.downloader', $this->id),
+//                'parent' => route('statistics.downloaders'),
+//            ],
         ];
     }
 }

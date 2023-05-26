@@ -18,10 +18,10 @@ class Organization extends JsonResource
             'navn' => $this->name,
             'organisasjonsform' => $this->org_form,
             'organisasjonsnummer' => $this->org_number,
-            'links' => [
-                'self' => route('statistics.organization', $this->id),
-                'parent' => route('statistics.organizations'),
-            ],
+//            'links' => [
+//                'self' => route('statistics.organization', $this->id),
+//                'parent' => route('statistics.organizations'),
+//            ],
         ];
     }
 }

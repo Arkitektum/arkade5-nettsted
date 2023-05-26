@@ -14,12 +14,12 @@ class ArkadeDownloaderCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'data' => $this->collection,
-            'links' => [
-                'self' => route('statistics.downloaders'),
-                'main_index' => route('statistics.index'),
-            ],
-        ];
+        return $this->collection;
+//            'data' => $this->collection,
+//            'links' => [
+//                'self' => route('statistics.downloaders'),
+//                'main_index' => route('statistics.index'),
+//            ],
+        //];
     }
 }

@@ -16,10 +16,10 @@ class OrganizationCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection,
-            'links' => [
-                'self' => route('statistics.organizations'),
-                'main_index' => route('statistics.index'),
-            ],
+//            'links' => [
+//                'self' => route('statistics.organizations'),
+//                'main_index' => route('statistics.index'),
+//            ],
         ];
     }
 }
