@@ -71,7 +71,7 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
 
     Route::get('arkade-utgivelser', function () {
         return view('statistics.arkade-releases.index', [
-            'releases' => new ArkadeReleaseCollection(ArkadeRelease::orderByDesc('version_number')->paginate()),
+            'releases' => new ArkadeReleaseCollection(ArkadeRelease::orderByDesc('released_at')->paginate()),
             'totalCount' => ArkadeRelease::count()
         ]);
     })->name('releases');
