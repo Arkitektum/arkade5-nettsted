@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Resources\ArkadeDownloaderCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -83,4 +84,17 @@ Route::get('arkade-versions', function () {
 
 Route::get('organization-locations', function () {
    return OrganizationLocation::collection(Organization::withAddressLocation()->get());
+});
+
+Route::get('arkade-downloaders', function () {
+    return [
+        'downloaders' => new ArkadeDownloaderCollection(ArkadeDownloader::orderByDesc('created_at')),
+        'totalCount' => ArkadeDownloader::count()
+    ];
+});
+
+Route::get('arkade-downloads', function (Request $request) {
+    return ($releaseId = $request->input('utgivelse'))
+        ? ArkadeDownload::orderByDesc('downloaded_at')->whereArkadeReleaseId($releaseId)
+        : ArkadeDownload::orderByDesc('downloaded_at');
 });
