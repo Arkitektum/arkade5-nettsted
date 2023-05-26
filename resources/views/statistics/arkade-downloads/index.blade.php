@@ -27,6 +27,7 @@
                     <tr class="border-b dark:border-neutral-500">
                         <td class="p-4">{{ $download->downloaded_at->format('d.m.y - H:i') }}</td>
                         <td class="p-4">{{ $download->arkadeDownloader->email }}
+                            @isset($download->organization) - {{ $download->organization->name }}@endisset
                         </td>
                         <td class="p-4">{{ $download->arkadeRelease->version_number }}
                             - {{ $download->arkadeRelease->user_interface }}
