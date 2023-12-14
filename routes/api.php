@@ -35,8 +35,8 @@ Route::post('arkade-downloads', function (Request $request) {
     $arkadeVersionNumber = $request->input('arkadeVersion');
 
     $release = isset($arkadeVersionNumber)
-        ? ArkadeRelease::isReleased()->isNotDeReleased()->whereUserInterface($arkadeUI)->whereVersionNumber($arkadeVersionNumber)->first()
-        : ArkadeRelease::isReleased()->isNotDeReleased()->whereUserInterface($arkadeUI)->orderByDesc('released_at')->first(); // latest version
+        ? ArkadeRelease::whereUserInterface($arkadeUI)->whereVersionNumber($arkadeVersionNumber)->first()
+        : ArkadeRelease::whereUserInterface($arkadeUI)->orderByDesc('released_at')->first(); // latest version
 
     if ($release == null)
         abort(404);
@@ -80,7 +80,7 @@ Route::post('arkade-downloads', function (Request $request) {
 })->name('download.store');
 
 Route::get('arkade-versions', function () {
-    return ArkadeRelease::IsReleased()->isNotDeReleased()->orderBy('released_at', 'desc')->get()
+    return ArkadeRelease::orderBy('released_at', 'desc')->get()
         ->unique('version_number')->pluck('version_number');
 });
 

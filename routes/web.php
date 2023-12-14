@@ -71,13 +71,13 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
 
     Route::get('arkade-utgivelser', function () {
         return view('statistics.arkade-releases.index', [
-            'releases' => new ArkadeReleaseCollection(ArkadeRelease::orderByDesc('released_at')->paginate()),
-            'totalCount' => ArkadeRelease::count()
+            'releases' => new ArkadeReleaseCollection(ArkadeRelease::withoutGlobalScope('public')->orderByDesc('released_at')->paginate()),
+            'totalCount' => ArkadeRelease::withoutGlobalScope('public')->count()
         ]);
     })->name('releases');
 
     Route::get('arkade-utgivelser/{release}', function (ArkadeRelease $release) {
-        return new ArkadeReleaseResource(ArkadeRelease::find($release->id));
+        return new ArkadeReleaseResource(ArkadeRelease::find($release->id)); // TODO: Disable global scope 'public'
     })->name('release');
 
     Route::get('arkade-nedlastere', function () {

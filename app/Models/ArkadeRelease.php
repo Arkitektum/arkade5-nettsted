@@ -3,9 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class ArkadeRelease extends Model
 {
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope('public', function (Builder $builder) {
+            $builder->whereNotNull('released_at')->whereNull('dereleased_at');
+        });
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,14 +35,6 @@ class ArkadeRelease extends Model
         'released_at' => 'datetime',
         'dereleased_at' => 'datetime',
     ];
-
-    public function scopeIsReleased($query){
-        return $query->whereNotNull('released_at');
-    }
-
-    public function scopeIsNotDeReleased($query){
-        return $query->whereNull('dereleased_at');
-    }
 
     /**
      * Get the downloads for the release.
