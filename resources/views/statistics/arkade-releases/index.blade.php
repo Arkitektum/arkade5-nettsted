@@ -18,7 +18,7 @@
                     <tr>
                         <th class="p-4">Versjonsnummer</th>
                         <th class="p-4">Brukergrensesnitt</th>
-                        <th class="p-4">Utgivelsesdato</th>
+                        <th class="p-4">Utgivelsesdato (fra – til)</th>
                         <th class="p-4">Antall nedlastinger</th>
                         <th title="Automatiserte nedlastinger | manuelle nedlastinger" scope="col">Man. | Auto.</th>
                     </tr>
@@ -30,6 +30,8 @@
                         <td class="p-4">{{ $release->user_interface }}</td>
                         <td class="p-4">@if(isset($release->released_at))
                             {{ $release->released_at->format('d.m.y') }}@endisset
+                            @if(isset($release->dereleased_at))
+                            – {{ $release->dereleased_at->format('d.m.y') }}@endisset
                         </td>
                         <td class="p-4">{{ $release->downloads->count() }}</td>
                         <td>
