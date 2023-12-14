@@ -30,6 +30,7 @@ class ArkadeReleaseSeeder extends Seeder
             'version_number' => '2.1.0',
             'user_interface' => 'GUI',
             'package_filename' => 'Arkade5-2.1.0.msi',
+            'dereleased_at' => '2023-12-14',
             'released_at' => '2020-10-19'
         ]);
 
@@ -37,6 +38,7 @@ class ArkadeReleaseSeeder extends Seeder
             'version_number' => '2.1.0',
             'user_interface' => 'CLI',
             'package_filename' => 'Arkade5CLI-2.1.0.zip',
+            'dereleased_at' => '2023-12-14',
             'released_at' => '2020-10-19'
         ]);
 

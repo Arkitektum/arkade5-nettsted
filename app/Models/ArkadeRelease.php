@@ -12,7 +12,7 @@ class ArkadeRelease extends Model
      * @var array
      */
     protected $fillable = [
-        'version_number', 'user_interface', 'package_filename', 'released_at'
+        'version_number', 'user_interface', 'package_filename', 'released_at', 'dereleased_at'
     ];
 
     /**
@@ -22,6 +22,7 @@ class ArkadeRelease extends Model
      */
     protected $casts = [
         'released_at' => 'datetime',
+        'dereleased_at' => 'datetime',
     ];
 
     public function scopeIsReleased($query){

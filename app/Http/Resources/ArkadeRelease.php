@@ -18,6 +18,7 @@ class ArkadeRelease extends JsonResource
             'brukergrensesnitt' => $this->user_interface,
             'versjonsnummer' => $this->version_number,
             'utgivelsesdato' => $this->released_at->format("d.m.Y"),
+            'deutgivelsesdato' => isset($this->dereleased_at) ? $this->dereleased_at->format("d.m.Y") : null,
             'antall_nedlastinger' => $this->downloads->count(),
             'links' => [
                 'self' => route('statistics.release', $this->id),
