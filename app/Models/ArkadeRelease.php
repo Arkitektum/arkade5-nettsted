@@ -29,6 +29,10 @@ class ArkadeRelease extends Model
         return $query->whereNotNull('released_at');
     }
 
+    public function scopeIsNotDeReleased($query){
+        return $query->whereNull('dereleased_at');
+    }
+
     /**
      * Get the downloads for the release.
      */
