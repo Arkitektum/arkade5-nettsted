@@ -79,9 +79,9 @@ Route::post('arkade-downloads', function (Request $request) {
 
 })->name('download.store');
 
-Route::get('arkade-versions', function () {
+Route::get('arkade-versions', function (Request $request) {
     return ArkadeRelease::orderBy('released_at', 'desc')->get()
-        ->unique('version_number')->pluck('version_number');
+        ->unique('version_number')->pluck('version_number')->take($request->input('limit'));
 });
 
 Route::get('organization-locations', function () {
