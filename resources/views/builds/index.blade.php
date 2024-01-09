@@ -17,7 +17,8 @@
                     @foreach($buildTypes as $buildType)
                     <li>
                         <a class="p-4 block shadow rounded hover:bg-gray-50"
-                           href="{{ route('builds.buildList', $buildType) }}">{{ ucfirst($buildType) }}
+                           href="{{ route('builds.buildList', $buildType) }}">
+                            {{ ucfirst(str_replace("_", " ", $buildType)) }}
                             <x-list-link-arrow/>
                         </a>
                     </li>
