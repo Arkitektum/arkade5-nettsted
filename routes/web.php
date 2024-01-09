@@ -106,7 +106,7 @@ Route::middleware('auth')->prefix('statistikk')->name('statistics.')->group(func
 Route::middleware('auth')->prefix('builds')->name('builds.')->group(function () {
 
     Route::get('/', function () {
-        return view('builds.index', ['buildTypes' => ['develop-builds', 'release-candidates', 'releases']]);
+        return view('builds.index', ['buildTypes' => array_map('basename', Storage::directories('builds'))]);
     })->name('index');
 
     Route::get('/{buildType}', function ($buildType) {
