@@ -124,8 +124,8 @@ Route::middleware('auth')->prefix('builds')->name('builds.')->group(function () 
 Route::middleware('auth')->get('news-receivers', function () {
 
     $newsReceiverEmails = ArkadeDownloader::whereWantsNews(true)->pluck('email');
-    $latestArkadeVersionNumber = ArkadeRelease::distinct('version_number')
-        ->orderBy('version_number', 'desc')->pluck('version_number')->first();
+    $latestArkadeVersionNumber = ArkadeRelease::orderBy('released_at', 'desc')->get()
+        ->unique('version_number')->pluck('version_number')->first();
 
     return view('news-receivers.index', [
         'newsReceiverEmails' => $newsReceiverEmails->toArray(),
