@@ -18,8 +18,8 @@ class ArkadeDownloadFactory extends Factory
      */
     public function definition(): array
     {
-        $arkadeRelease = ArkadeRelease::find(fake()->numberBetween(1, ArkadeRelease::count()));
-        $latestDownloadTime = ArkadeRelease::find($arkadeRelease->id + 2)->released_at ?? $arkadeRelease->released_at->addMonths(3);
+        $arkadeRelease = ArkadeRelease::inRandomOrder()->first();
+        $latestDownloadTime = ArkadeRelease::where('released_at', '>', $arkadeRelease->released_at)->first()->released_at ?? $arkadeRelease->released_at->addMonths(3);
 
         $user = User::find(fake()->numberBetween(1, User::count()));
 
