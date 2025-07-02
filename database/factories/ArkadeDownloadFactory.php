@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\ArkadeRelease;
-use App\Models\User;
+use App\Models\ArkadeDownloader;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,13 +21,13 @@ class ArkadeDownloadFactory extends Factory
         $arkadeRelease = ArkadeRelease::inRandomOrder()->first();
         $latestDownloadTime = ArkadeRelease::where('released_at', '>', $arkadeRelease->released_at)->first()->released_at ?? $arkadeRelease->released_at->addMonths(3);
 
-        $user = User::find(fake()->numberBetween(1, User::count()));
+        $arkade_downloader = ArkadeDownloader::find(fake()->numberBetween(1, ArkadeDownloader::count()));
 
         return [
             'downloaded_at' => fake()->dateTimeBetween($arkadeRelease->released_at, $latestDownloadTime),
             'arkade_release_id' => $arkadeRelease->id,
-            'arkade_downloader_id' => $user->id,
-            'organization_id' => ((int)$user->id % 20) + 1,
+            'arkade_downloader_id' => $arkade_downloader->id,
+            'organization_id' => ((int)$arkade_downloader->id % 20) + 1,
             'is_automated' => fake()->boolean(15),
         ];
     }
