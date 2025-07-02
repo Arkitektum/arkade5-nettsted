@@ -21,7 +21,7 @@ class ArkadeDownloadFactory extends Factory
         $arkadeRelease = ArkadeRelease::inRandomOrder()->first();
         $latestDownloadTime = ArkadeRelease::where('released_at', '>', $arkadeRelease->released_at)->first()->released_at ?? $arkadeRelease->released_at->addMonths(3);
 
-        $arkade_downloader = ArkadeDownloader::find(fake()->numberBetween(1, ArkadeDownloader::count()));
+        $arkade_downloader = ArkadeDownloader::inRandomOrder()->first();
 
         return [
             'downloaded_at' => fake()->dateTimeBetween($arkadeRelease->released_at, $latestDownloadTime),
