@@ -32,6 +32,12 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
+// Public front-end:
+Route::get('/', function () {
+    return response()->file('frontend/index.html');
+});
+
+// Administrator resources:
 Route::prefix('admin')->group(function () {
 
     Route::get('/', function () {
@@ -137,8 +143,4 @@ Route::prefix('admin')->group(function () {
     })->name('newsReceivers');
 
     require __DIR__.'/auth.php';
-});
-
-Route::get('/', function () {
-   return response()->file('frontend/index.html');
 });
