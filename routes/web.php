@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::domain('admin.' . env('APP_URL'))->group(function () {
+Route::prefix('admin')->group(function () {
 
     Route::get('/', function () {
         return view('dashboard');
