@@ -15,8 +15,7 @@ const arkadeIcon = L.icon({
 });
 
 const getOrganizations = () => {
-    const apiSubdomain = 'admin';
-    const apiHost = `${window.location.protocol}//${apiSubdomain}.${window.location.hostname}`;
+    const apiHost = `${window.location.protocol}//${window.location.hostname}`;
     const apiUrl = `${apiHost}/api/organization-locations`;
 
     return fetch(apiUrl)

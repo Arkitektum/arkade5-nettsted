@@ -123,8 +123,7 @@ const handleDownloadFinished = () => {
 }
 
 const postUserInfo = userInfo => {
-  const apiSubdomain = 'admin';
-  const apiHost = `${window.location.protocol}//${apiSubdomain}.${window.location.hostname}`;
+  const apiHost = `${window.location.protocol}//${window.location.hostname}`;
   const apiUrl = `${apiHost}/api/arkade-downloads`;
   return fetch(apiUrl, {
     method: 'POST',
@@ -180,8 +179,7 @@ const handleDownloadDialogSubmit = () => {
 }
 
 const getArkadeVersionNumbers = () => {
-    const apiSubdomain = 'admin';
-    const apiHost = `${window.location.protocol}//${apiSubdomain}.${window.location.hostname}`;
+    const apiHost = `${window.location.protocol}//${window.location.hostname}`;
     const apiUrl = `${apiHost}/api/arkade-versions?limit=2`;
 
     return fetch(apiUrl)
