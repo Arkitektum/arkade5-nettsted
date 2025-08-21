@@ -35,7 +35,7 @@
         <!-- Page Footer -->
         <footer class="px-4">
             <span class="text-xs text-gray-500">
-                {{ File::exists("../git-rev.txt") ? 'Rev. ' . File::get("../git-rev.txt") : '' }}
+                Env. {{ config('app.env', '?') }} - {{ File::exists("../git-rev.txt") ? 'Rev. ' . File::get("../git-rev.txt") : '' }}
             </span>
         </footer>
     </body>
