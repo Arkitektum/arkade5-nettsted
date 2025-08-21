@@ -33,12 +33,10 @@
             </main>
         </div>
         <!-- Page Footer -->
-        <footer class="bg-white shadow-sm m-4 dark:bg-gray-800">
-            <div class="bottom-0 w-full mx-auto max-w-screen-xl px-4 md:flex">
-                <span class="text-xs text-gray-500 xs:text-center dark:text-gray-400">
-                    {{ File::exists("../git-rev.txt") ? 'Rev. ' . File::get("../git-rev.txt") : '' }}
-                </span>
-            </div>
+        <footer class="px-4">
+            <span class="text-xs text-gray-500">
+                {{ File::exists("../git-rev.txt") ? 'Rev. ' . File::get("../git-rev.txt") : '' }}
+            </span>
         </footer>
     </body>
 </html>
