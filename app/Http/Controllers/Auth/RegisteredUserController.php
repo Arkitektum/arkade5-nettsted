@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        // Auth::login($user); // In ArkadeWebBackend registration is performed by existing (logged in) user
+        // Auth::login($user); // Registration is performed by existing (logged in) user
 
         return redirect(RouteServiceProvider::HOME);
     }
