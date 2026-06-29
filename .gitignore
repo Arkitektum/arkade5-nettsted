@@ -18,3 +18,7 @@ yarn-error.log
 /.idea
 /.vscode
 git-rev.txt
+
+# Claude Code: keep shared CLAUDE.md and .claude/settings.json tracked,
+# ignore personal/machine-specific local settings
+/.claude/settings.local.json
