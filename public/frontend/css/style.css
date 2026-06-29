@@ -504,6 +504,13 @@ header .overlay .button span{
   justify-content: space-between;
 }
 
+/* Trim the footer's vertical padding so the larger logo fits
+   without making the footer noticeably taller. */
+footer .contentContainer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .modalContent.mapModal {
   max-width: 80%;
 }
