@@ -1,4 +1,4 @@
-getReleases("arkivverket", "arkade5").then(releases => {
+getReleases("nasjonalarkivet", "arkade5").then(releases => {
   releases.forEach((release, index) => {
     if (index === 0) {
       let containerElement = document.getElementById('latestRelease');

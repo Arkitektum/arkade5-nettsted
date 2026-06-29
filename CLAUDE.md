@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-The website and download/statistics backend for **Arkade 5**, a Norwegian archive-extraction validation tool (Nasjonalarkivet / Arkivverket). The repo serves two distinct things from one Laravel 12 app:
+The website and download/statistics backend for **Arkade 5**, a Norwegian archive-extraction validation tool (Nasjonalarkivet, formerly Arkivverket). The repo serves two distinct things from one Laravel 12 app:
 
 1. A **public static marketing/download site** (`public/frontend/`, plain HTML + vanilla JS + Leaflet) served at `/`.
 2. A **Laravel admin backend** at `/admin` (auth-gated, Blade + Tailwind + Alpine) for viewing download statistics and managing release builds.

@@ -1,5 +1,5 @@
 const getReleases = (owner, repo) => {
-  return fetch('https://api.github.com/repos/arkivverket/arkade5/releases')
+  return fetch('https://api.github.com/repos/nasjonalarkivet/arkade5/releases')
     .then((response) => {
       return response.json();
     })
@@ -9,7 +9,7 @@ const getReleases = (owner, repo) => {
 }
 
 const getLatestRelease = (owner, repo) => {
-  return fetch('https://api.github.com/repos/arkivverket/arkade5/releases/latest')
+  return fetch('https://api.github.com/repos/nasjonalarkivet/arkade5/releases/latest')
     .then((response) => {
       return response.json();
     })

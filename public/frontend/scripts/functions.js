@@ -43,7 +43,7 @@ const createReleaseElement = (release, defaultExpanded) => {
 }
 
 const getDownloadLink = applicationType => {
-  getLatestRelease("arkivverket", "arkade5").then(latestRelease => {
+  getLatestRelease("nasjonalarkivet", "arkade5").then(latestRelease => {
     console.log(latestRelease);
   });
 }
