@@ -37,14 +37,14 @@
         <input id="organizationNumber" type="hidden" />
 
         <label for="organizationSearch">Organisasjon</label>
-        <input type="search" autocomplete="off" id="organizationSearch" onkeyup="handleOrganizationSearchChange(event.target.value)" onblur="handleOrganizationSearchBlur()" onSearch="handleOrganizationOnSearch(event)" placeholder="Søk etter organisasjon" />
+        <input type="search" autocomplete="off" id="organizationSearch" placeholder="Søk etter organisasjon" />
         <div id="organizationSearchResultsDropdown" class="searchResultsDropdown"></div>
 
         <label for="userEmail" class="required">E-post</label>
-        <input id="userEmail" type="email" placeholder="navn@domene.no" onkeyup="validateForm()"/>
+        <input id="userEmail" type="email" placeholder="navn@domene.no"/>
 
         <label for="arkadeVersion">Arkade-versjon</label>
-        <select id="arkadeVersion" onchange="handleArkadeVersionSelect()"></select>
+        <select id="arkadeVersion"></select>
 
         <input id="userNews" type="checkbox" />
         <label for="userNews">Jeg ønsker å bli informert om nyheter og forbedringer relatert til Arkade programvare</label>
@@ -52,10 +52,10 @@
 
         <div class="buttonRow alignRight">
           <b id="download-info"></b>
-          <button onclick="hideDownloadDialog()" id="downloadDialogCancel">
+          <button id="downloadDialogCancel">
             <span id="downloadDialogCancelButtonText">Avbryt</span>
           </button>
-          <button onclick="handleDownloadDialogSubmit()" disabled id="downloadDialogSubmit">
+          <button disabled id="downloadDialogSubmit">
             <span id="downloadDialogSubmitButtonText">Last ned</span>
             <div id="downloadDialogSubmitProgressBar" class="progress-bar">
               <div class="progress-bar-value"></div>
@@ -72,7 +72,7 @@
           <br /><br />
           <small>Klikk på <img src="frontend/favicon-16x16.png" alt="Arkade-logo"> for å vise organisasjonsnavn</small>
         </span>
-        <button type="button" onclick="hideMapModal()">&times;</button>
+        <button type="button" id="mapModalClose">&times;</button>
       </div>
       <div id="organization-map"></div>
     </div>
@@ -94,12 +94,12 @@
         <p>
           Arkade sørger for at arkivuttrekk fra NOARK- eller fagsystemer er iht. til gjeldende arkivstandarder, hjelper deg som arkivskaper med å rette avvik, opprette metadata og produsere ferdige arkivpakker klar til avlevering.
         </p>
-        <button onclick="showDownloadDialog('windows')">
+        <button data-application-type="windows">
           <span>
             <i class="fab fa-windows fa-lg"></i> Last ned Arkade 5 for Windows
           </span>
         </button>
-        <button onclick="showDownloadDialog('cli')">
+        <button data-application-type="cli">
           <span>
             <i class="fas fa-terminal fa-lg"></i> Last ned Arkade 5 CLI
           </span>
@@ -114,13 +114,13 @@
     </header>
     <div>
       <div class="contentContainer">
-        <h2 onclick="toggleExpand('latestRelease', this)" class="expandToggle">Se nytt i siste versjon</h2>
+        <h2 data-expand-target="latestRelease" class="expandToggle">Se nytt i siste versjon</h2>
         <div id="latestRelease" class="accordionList collapsed"></div>
-        <h3 onclick="toggleExpand('previousReleases', this)" class="expandToggle">Se tidligere versjoner</h3>
+        <h3 data-expand-target="previousReleases" class="expandToggle">Se tidligere versjoner</h3>
         <div id="previousReleases" class="accordionList collapsed"></div>
         <div class="organization-info">
           <h3><span id="organizationCount"></span> organisasjoner har lastet ned Arkade 5</h3>
-          <figure onclick="showMapModal()">
+          <figure id="mapPreview">
             <img class="organization-map-image" src="frontend/organization-map.png" alt="organization-map">
             <figcaption><a>Se på kart</a></figcaption>
           </figure>
@@ -148,6 +148,7 @@
   <script src="frontend/scripts/brregApiService.js"></script>
   <script src="frontend/scripts/functions.js"></script>
   <script src="frontend/scripts/init.js"></script>
+  <script src="frontend/scripts/event-listeners.js"></script>
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
   <script src="frontend/scripts/leaflet.markercluster.js"></script>
   <script src="frontend/scripts/organization-map.js"></script>
